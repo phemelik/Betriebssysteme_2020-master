@@ -61,20 +61,16 @@ public class Ram {
                 return p;
             }
         }
-        /*
         for(Page paPage : pagingArea.pageList) {
             if (page.equals(paPage)) {
                 Page toReplace = getNotRecentlyUsed();
-                if (toReplace.getReferences() < paPage.getReferences()) {
-                    pagingArea.add(toReplace);
-                    paPage.addReference();
-                    replace(toReplace, paPage);
-                    return paPage;
-                }
+                pagingArea.add(toReplace);
+                paPage.setAccessed();
+                replace(toReplace, paPage);
+                return paPage;
             }
         }
         return null;
-         */
     }
 
     /**
@@ -87,17 +83,12 @@ public class Ram {
                 page.setModified();
             }
         }
-        /*
         if(pagingArea.contains(c)) {
-            pagingArea.get(new Page(c)).addReference();
+            pagingArea.get(new Page(c)).setModified();
             Page leastReferenced = getNotRecentlyUsed();
-            if(leastReferenced.getReferences() < pagingArea.get(new Page(c)).getReferences()) {
-                pagingArea.add(leastReferenced);
-                replace(leastReferenced, pagingArea.get(new Page(c)));
-            }
+            pagingArea.add(leastReferenced);
+            replace(leastReferenced, pagingArea.get(new Page(c)));
         }
-
-         */
     }
 
     /**
